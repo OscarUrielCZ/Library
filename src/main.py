@@ -1,2 +1,7 @@
+from tkinter import Tk
+from App import App
+
 if __name__ == '__main__':
-    print('Hello, world!')
+	root = Tk()
+	App(master=root)
+	root.mainloop()
