@@ -5,9 +5,7 @@ from User import User
 import db
 
 if __name__ == '__main__':
-	id = uuid.uuid4()
-	print(id)
-	# db.create_user(User('Oscar', '1234'))
+	db.create_user(User('Oscar', '1234', id=str(uuid.uuid4())))
 	# root = Tk()
 	# App(master=root)
 	# root.mainloop()
