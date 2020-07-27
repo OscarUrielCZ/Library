@@ -1,19 +1,31 @@
 from os import path
-import sqlite3
+import mysql.connector
 from User import User
 
-database_name = 'library.db'
-database = path.join('../db/', database_name)
+config = {
+	'user': 'oscar',
+	'password': 'Oscarpass1234.',
+	'host': '127.0.0.1',
+	'database': 'library'
+}
 
-def create_user(user):
-	connection = sqlite3.connect(database)
-	cursor = connection.cursor()
+def insert_user(user):
+	db = mysql.connector.connect(**config)
+	cursor = db.cursor()
 
-	#try:
-	cursor.execute(f"INSERT INTO users VALUES ('{user.id}', '{user.username}', '{user.password}')")
-	#except:
-	#	print('Something went wrong')
+	query = 'INSERT INTO users (id, username, password) VALUES (%s, %s, %s)'
+	values = (user.id, user.username, user.password)
+	cursor.execute(query, values)
 	
-	print(f'New user singed up: {user.username}')
-	connection.commit()
-	connection.close()
+	db.commit()
+	db.close()
+
+def delete_user(id):
+	db = mysql.connector.connect(**config)
+	cursor = db.cursor()
+
+	query = f"DELETE FROM users WHERE id='{id}'"
+	cursor.execute(query)
+	
+	db.commit()
+	db.close()
