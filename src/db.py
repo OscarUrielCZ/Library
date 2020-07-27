@@ -29,3 +29,18 @@ def delete_user(id):
 	
 	db.commit()
 	db.close()
+
+def select_books(filter=None):
+	db = mysql.connector.connect(**config)
+	cursor = db.cursor()
+	query = 'SELECT * FROM books'
+	if filter != None: query += f' WHERE {filter}'
+	cursor.execute(query)
+	db.close()
+
+	try:
+		records = cursor.fetchall()
+		return records
+	except mysql.connector.errors.InterfaceError as err:
+		print(err)
+		return []

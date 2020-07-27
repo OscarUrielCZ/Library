@@ -1,4 +1,6 @@
 import tkinter as tk
+from uuid import uuid4
+import db
 
 class App(tk.Frame):
 	def __init__(self, master=None):
@@ -6,6 +8,8 @@ class App(tk.Frame):
 		self.__master.title('Library')
 		self.__master.resizable(False, False)
 		self.__init_components()
+		self.__load_books(db.select_books())
+
 
 	def __init_components(self):
 		self.__menubar = tk.Menu(self.__master)
@@ -39,3 +43,6 @@ class App(tk.Frame):
 		self.__left_frame.pack(side=tk.LEFT)
 		self.__right_frame = tk.Frame(self.__master, width=500, height=600)
 		self.__right_frame.pack(side=tk.LEFT)
+
+	def __load_books(self, books):
+		print(books)
