@@ -6,7 +6,7 @@ create table users (
 );
 create table books (
 	id varchar(36) not null,
-	title varchar(50) not null,
+	title varchar(100) not null,
 	author varchar(50) not null,
 	description text,
 	imguri varchar(50),
