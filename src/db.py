@@ -34,12 +34,12 @@ def select_books(filter=None):
 	db = mysql.connector.connect(**config)
 	cursor = db.cursor()
 	query = 'SELECT * FROM books'
-	if filter != None: query += f' WHERE {filter}'
+	if filter != None:
+		query += f' WHERE {filter}'
 	cursor.execute(query)
-	db.close()
-
 	try:
 		records = cursor.fetchall()
+		db.close()
 		return records
 	except mysql.connector.errors.InterfaceError as err:
 		print(err)

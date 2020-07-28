@@ -45,4 +45,10 @@ class App(tk.Frame):
 		self.__right_frame.pack(side=tk.LEFT)
 
 	def __load_books(self, books):
-		print(books)
+		for book in books:
+			frame = tk.Frame(self.__left_frame)
+			title = tk.Label(frame, text=book[1])
+			author = tk.Label(frame, text=book[2])
+			title.pack()
+			author.pack()
+			frame.pack()

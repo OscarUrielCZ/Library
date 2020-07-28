@@ -9,7 +9,6 @@ create table books (
 	title varchar(100) not null,
 	author varchar(50) not null,
 	description text,
-	imguri varchar(50),
 	primary key (id)
 );
 create table libraries (
